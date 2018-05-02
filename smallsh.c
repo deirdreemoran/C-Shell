@@ -3,7 +3,10 @@
 *  Author: Deirdre Moran
 *  Program: smallsh.c
 *  Date: 3/5/2018
-*  Description: C shell
+*  Description: Simple C shell.  Prompts user with command line and runs
+*				commands.  Supports 3 built in commands: exit, cd, status.
+*				Supports comments, redirection of stdin and stdout, background
+*				foreground processes.
 *
 ************************************************************************/
 
