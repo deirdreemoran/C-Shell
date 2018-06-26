@@ -3,10 +3,10 @@
 *  Author: Deirdre Moran
 *  Program: smallsh.c
 *  Date: 3/5/2018
-*  Description: Simple C shell.  Prompts user with command line and runs
-*				commands.  Supports 3 built in commands: exit, cd, status.
-*				Supports comments, redirection of stdin and stdout, background
-*				foreground processes.
+*  Description: Simple C shell.  Prompts user with command line and executes
+*		commands.  Supports 3 built in commands: exit, cd, status.
+*		Supports comments, redirection of stdin and stdout, background
+*		foreground processes.
 *
 ************************************************************************/
 
@@ -37,12 +37,12 @@ int childExitStatus;
 /***********************************************************************
 *  Function: 		catchSIGTSTP(int)
 *  Description:  	Signal handler for SIGTSTP signal that controls if
-*					background processes are allowed.  Prints
-*					message to user depending on current mode.
+*			background processes are allowed.  Prints
+*			message to user depending on current mode.
 *  Parameters:   	signal number
 *  Pre-conditions:	None
 *  Post-conditions:	background processes are allowed or disallowed
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void catchSIGTSTP(int signo){
 	char * message1 = "\nEntering foreground-only mode (& is now ignored)\n: ";
@@ -65,11 +65,11 @@ void catchSIGTSTP(int signo){
 /***********************************************************************
 *  Function: 		bgFinishedProcesses
 *  Description:  	Loops through background processes array and prints
-*					exit value and pid of finished processes.
+*			exit value and pid of finished processes.
 *  Parameters:   	None
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void bgFinishedProcesses(){
 	int status;
@@ -111,7 +111,7 @@ void bgFinishedProcesses(){
 *  Parameters:   	None
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			lineEntered (user entry)
+*  Return:		lineEntered (user entry)
 ************************************************************************/
 char * getUserCommand(){
 	int numsChar;
@@ -144,7 +144,7 @@ char * getUserCommand(){
 *  Parameters:   	User entry tokenized array tokenArray, numArgs in tokenArray
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void cdCommand(char * myArray[], int numArgs){
 	// If no directory is specified, go to home directory
@@ -168,11 +168,11 @@ void cdCommand(char * myArray[], int numArgs){
 /***********************************************************************
 *  Function: 		exitCommand
 *  Description:  	Exits program when user command is "exit".  Kills
-*					any outstanding child processes, if any.
+*			any outstanding child processes, if any.
 *  Parameters:   	None
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void exitCommand(){
 	pid_t pid = fork();
@@ -205,7 +205,7 @@ void exitCommand(){
 *  Parameters:   	None
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void statusCommand(){
 	// if there is an exit value
@@ -229,10 +229,10 @@ void statusCommand(){
 *  Function: 		redirectCommand
 *  Description:  	Executes commands with redirections
 *  Parameters:   	filedescriptor array, redirection array, token array,
-*					array for file, number of arguments in command
+*			array for file, number of arguments in command
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void redirectCommand(int fd[], char * redirA[], char * tokenArray[], char * arrayA[], int numArgs){
 	// for output redirection
@@ -308,10 +308,10 @@ void redirectCommand(int fd[], char * redirA[], char * tokenArray[], char * arra
 *  Function: 		multRedirectionCommand
 *  Description:  	Executes commands with redirections
 *  Parameters:   	filedescriptor array, redirection array, token array,
-*					array for file, number of arguments in command
+*				array for file, number of arguments in command
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void multRedirectionCommand(int fd[], char * redirA[], char * tokenArray[], int numArgs){
 	// open file for reading
@@ -356,10 +356,10 @@ void multRedirectionCommand(int fd[], char * redirA[], char * tokenArray[], int 
 *  Function: 		otherCommands
 *  Description:  	For all other commands
 *  Parameters:   	sigaction structs for SIGINT, SIGTSTP, signal ignore
-*					token array of commands, sigprocmask
+*			token array of commands, sigprocmask
 *  Pre-conditions:	None
 *  Post-conditions:	None
-*  Return:			None
+*  Return:		None
 ************************************************************************/
 void otherCommands(struct sigaction SIGINT_action, struct sigaction ignore_action, struct sigaction SIGTSTP_action, char *tokenArray[], sigset_t x){
 	pid_t pid = fork();
@@ -426,9 +426,9 @@ void otherCommands(struct sigaction SIGINT_action, struct sigaction ignore_actio
 *************************************************************************
 *************************************************************************
 *************************************************************************
-***********												      ***********
-****							MAIN() 			                      ***
-***********												      ***********
+***********						      ***********
+****				MAIN()		                      ***
+***********						      ***********
 *************************************************************************
 *************************************************************************
 *************************************************************************
